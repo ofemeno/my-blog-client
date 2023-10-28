@@ -56,21 +56,18 @@ export default function CreatePost() {
 
     // console.log(files);
 
-  try {
+    try {
       // submit form using fetch
       const response = await fetch("http://localhost:5000/post", {
         method: "POST",
         body: data,
+        credentials: "include",
       });
-  
+
       if (response.ok) {
         setRedirect(true);
       }
-      const res = await response.json();
-
-  } catch (error) {
-    
-  }
+    } catch (error) {}
   }
 
   if (redirect) {
