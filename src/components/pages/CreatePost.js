@@ -1,36 +1,7 @@
-import { useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image"],
-    ["clean"],
-  ],
-};
-
-const formats = [
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-];
+import { UserContext } from "../../context/userContex";
+import { Editor } from "../Editor";
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
@@ -38,6 +9,8 @@ export default function CreatePost() {
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const {userInfo} = useContext(UserContext)
+  const username = userInfo?.username
 
   // create new post
   async function createNewPost(e) {
@@ -75,31 +48,29 @@ export default function CreatePost() {
   }
 
   return (
-    <>
-      <form action="" className="create">
-        <input
-          type="text"
-          placeholder={"title"}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder={"summary"}
-          value={summary}
-          onChange={(e) => setSummary(e.target.value)}
-        />
+  <>
+   {username && (
+    <form action="" className="create">
+    <input
+      type="text"
+      placeholder={"title"}
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+    />
+    <input
+      type="text"
+      placeholder={"summary"}
+      value={summary}
+      onChange={(e) => setSummary(e.target.value)}
+    />
 
-        <input type="file" onChange={(e) => setFiles(e.target.files)} />
+    <input type="file" onChange={(e) => setFiles(e.target.files)} />
 
-        <ReactQuill
-          value={content}
-          modules={modules}
-          formats={formats}
-          onChange={(newValue) => setContent(newValue)}
-        />
-        <button onClick={createNewPost}>Create Post</button>
-      </form>
-    </>
+    <Editor value={content} onChange={setContent} />
+    
+    <button onClick={createNewPost}>Create Post</button>
+  </form>
+   )}
+  </>
   );
 }
