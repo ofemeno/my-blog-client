@@ -35,7 +35,7 @@ export default function EditPostPage() {
     async function postUpdate() {
       try {
         // submit form using fetch
-        const response = await fetch(`http://localhost:5000/post/${slug}`, {
+        const response = await fetch(`https://my-blog-api-ehft.onrender.com/post/${slug}`, {
           method: "PUT",
           body: data,
           credentials: "include",
@@ -54,7 +54,7 @@ export default function EditPostPage() {
   useEffect(() => {
     async function getPost() {
       try {
-        const response = await fetch(`http://localhost:5000/post/${slug}`);
+        const response = await fetch(`https://my-blog-api-ehft.onrender.com/post/${slug}`);
         const info = await response.json();
         setContent(info.content);
         setSummary(info.summary);

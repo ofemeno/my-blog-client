@@ -14,7 +14,7 @@ export default function SinglePost() {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const result = await fetch(`http://localhost:5000/post/${slug}`);
+        const result = await fetch(`https://my-blog-api-ehft.onrender.com/post/${slug}`);
         const res = await result.json();
         const { author } = res;
         setPostInfo(res);
@@ -57,7 +57,7 @@ export default function SinglePost() {
           )}
           <div className="image">
             <img
-              src={`http://localhost:5000/${postInfo?.cover}`}
+              src={`https://my-blog-api-ehft.onrender.com/${postInfo?.cover}`}
               alt={postInfo?.title}
             />
           </div>

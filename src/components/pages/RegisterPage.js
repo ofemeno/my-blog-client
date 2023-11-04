@@ -9,7 +9,7 @@ export default function RegisterPage() {
     e.preventDefault();
     try {
       // send post request with form data payload
-      const response = await fetch("http://localhost:5000/register", {
+      const response = await fetch("https://my-blog-api-ehft.onrender.com/register", {
         method: "POST",
         body: JSON.stringify({ username, password, fullName }),
         headers: { "Content-Type": "application/json" },

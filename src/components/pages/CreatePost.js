@@ -31,7 +31,7 @@ export default function CreatePost() {
 
     try {
       // submit form using fetch
-      const response = await fetch("http://localhost:5000/post", {
+      const response = await fetch("https://my-blog-api-ehft.onrender.com/post", {
         method: "POST",
         body: data,
         credentials: "include",

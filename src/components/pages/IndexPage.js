@@ -6,7 +6,7 @@ export default function IndexPage() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
-    fetch("http://localhost:5000/post")
+    fetch("https://my-blog-api-ehft.onrender.com/post")
       .then((response) => {
         response.json().then((posts) => {
           console.log(posts);

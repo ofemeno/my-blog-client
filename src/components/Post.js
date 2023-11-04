@@ -13,7 +13,7 @@ export default function Post({
     <div className="post">
       <div className="image">
         <Link to={"/post/id"}>
-          <img src={"http://localhost:5000/" + cover} alt="" />
+          <img src={"https://my-blog-api-ehft.onrender.com/" + cover} alt="" />
         </Link>
       </div>
       <div className="texts">
